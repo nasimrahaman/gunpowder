@@ -34,7 +34,7 @@ class NetIoWrapper(object):
                         requires_grad=False, volatile=True)
 
     def unwrap(self, variable):
-        return variable.data.cpu().numpy()[0]
+        return variable.data.cpu().numpy()
 
     def set_inputs(self, data):
         # Convert to torch tensors
