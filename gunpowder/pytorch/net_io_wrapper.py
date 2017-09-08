@@ -18,7 +18,7 @@ class NetIoWrapper(object):
         self.use_gpu = use_gpu
 
     def to_device(self, tensor):
-        if self.use_gpu:
+        if self.use_gpu is not None:
             assert self.use_gpu == 0, "can only use GPU0, try setting " \
                                       "CUDA_VISIBLE_DEVICES instead."
             return tensor.cuda()
