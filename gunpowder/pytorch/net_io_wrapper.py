@@ -26,11 +26,15 @@ class NetIoWrapper(object):
             return tensor.cpu()
 
     def wrap(self, array):
+        if array.ndim == 3:
+            array = array[None, None, ...]
+        else:
+            assert array.ndim == 5
         return Variable(self.to_device(torch.from_numpy(array.copy()).contiguous()),
                         requires_grad=False, volatile=True)
 
     def unwrap(self, variable):
-        return variable.data.cpu().numpy()
+        return variable.data.cpu().numpy()[0]
 
     def set_inputs(self, data):
         # Convert to torch tensors
