@@ -22,7 +22,7 @@ class Chunk(BatchFilter):
         self.chunk_spec_template = chunk_spec
         self.cache_size          = cache_size
         self.num_workers         = num_workers
-        self.dims = self.chunk_spec_template.volume_specs[self.chunk_spec_template.volume_specs.keys()[0]].roi.dims()
+        self.dims = self.chunk_spec_template.volume_specs[list(self.chunk_spec_template.volume_specs.keys())[0]].roi.dims()
 
         for identifier, spec in self.chunk_spec_template.items():
             assert self.dims == spec.roi.dims(),\
